@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhaipph - Portofolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe',
+                            300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6',
+                            600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
+                        }
+                    },
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delay { animation: float 6s ease-in-out infinite; animation-delay: 3s; }
+        
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- ===== LOGO SETUP (GANTI DI SINI) ===== -->
+    <script>
+        const MY_LOGO_URL = "https://i.ibb.co.com/pBnrmhxs/New-Project-28-E3-E7-BD7.png";           
+        const MY_BRAND_NAME = "rhai";
+        const MY_BRAND_COLOR = "pph";
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <button onclick="showPage('home')" class="flex items-center gap-3 cursor-pointer group">
+                    <div id="logo-container" class="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden shadow-lg transition-transform group-hover:scale-105"></div>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-800">
+                        <span id="brand-name">rhai</span><span class="text-primary-600" id="brand-color">pph</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HOME PAGE ========== -->
+    <div id="home" class="page-section active">
+        <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+            <div class="blob bg-primary-300 w-96 h-96 rounded-full top-20 -left-20 animate-float"></div>
+            <div class="blob bg-blue-200 w-80 h-80 rounded-full bottom-20 -right-20 animate-float-delay"></div>
+            <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+                <div class="inline-block mb-6 px-4 py-2 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-sm font-bold uppercase tracking-wider">
+                    Creative Designer
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+                    Hi, I'm <span class="gradient-text">rhaipph</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    I create beautiful designs that tell stories and connect with people.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center text-white font-bold text-sm" id="footer-logo">D</div>
+                    <span class="font-bold text-lg">rhai<span class="text-primary-400">pph</span></span>
+                </div>
+                <p class="text-slate-400 text-sm"> 2026 rhaipph. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="text-slate-400 hover:text-primary-400 transition-colors">Privacy</a>
+                    <a href="#" class="text-slate-400 hover:text-primary-400 transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== LOGO SETUP ==========
+        (function setupLogo() {
+            const container = document.getElementById('logo-container');
+            const footerLogo = document.getElementById('footer-logo');
+            
+            if (MY_LOGO_URL && MY_LOGO_URL.trim() !== "") {
+                container.innerHTML = `<img src="${MY_LOGO_URL}" alt="Logo" class="logo-img">`;
+                container.classList.add('bg-white');
+                footerLogo.innerHTML = `<img src="${MY_LOGO_URL}" alt="Logo" style="width:24px;height:24px;object-fit:contain;">`;
+                footerLogo.classList.remove('bg-primary-600');
+                footerLogo.classList.add('bg-white');
+            } else {
+                container.innerHTML = `<span class="text-white font-bold text-xl">D</span>`;
+                container.classList.add('bg-gradient-to-br', 'from-primary-500', 'to-primary-700');
+            }
+            
+            document.getElementById('brand-name').textContent = MY_BRAND_NAME;
+            document.getElementById('brand-color').textContent = MY_BRAND_COLOR;
+        })();
+    </script>
+</body>
+</html>
